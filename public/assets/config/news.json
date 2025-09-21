@@ -1,0 +1,52 @@
+[
+  {
+    "id":"m1",
+    "title":"Spider-Man ganha pôster comemorativo",
+    "summary":"Novo pôster celebra a fase atual do herói com design inovador e referências aos filmes mais recentes.",
+    "image_url":"https://images.unsplash.com/photo-1578632292335-df3abbb0d582?q=80&w=1200&auto=format&fit=crop",
+    "category":"marvel_dc",
+    "source":"https://www.marvel.com/articles",
+    "created_date":"2025-01-22T10:00:00Z",
+    "is_featured":true
+  },
+  {
+    "id":"m2",
+    "title":"DC revela bastidores de próxima produção",
+    "summary":"Material inédito mostra bastidores e entrevistas exclusivas com o elenco da nova produção.",
+    "image_url":"https://images.unsplash.com/photo-1542204637-e67bc7d41e48?q=80&w=1200&auto=format&fit=crop",
+    "category":"marvel_dc",
+    "source":"https://www.dc.com/news",
+    "created_date":"2025-01-25T12:00:00Z",
+    "is_featured":true
+  },
+  {
+    "id":"f1",
+    "title":"Casal famoso movimenta as redes",
+    "summary":"Relacionamento vira assunto do dia entre celebridades e gera milhões de interações nas redes sociais.",
+    "image_url":"https://images.unsplash.com/photo-1529336953121-a52d5a0b0b9a?q=80&w=1200&auto=format&fit=crop",
+    "category":"fofocas",
+    "source":"https://www.purepeople.com.br/",
+    "created_date":"2025-01-27T09:00:00Z",
+    "is_featured":true
+  },
+  {
+    "id":"m3",
+    "title":"Marvel anuncia nova saga cinematográfica",
+    "summary":"Estúdio revela planos para os próximos anos com novos heróis e vilões inéditos no cinema.",
+    "image_url":"https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=1200&auto=format&fit=crop",
+    "category":"marvel_dc",
+    "source":"https://www.marvel.com/articles",
+    "created_date":"2025-01-20T15:30:00Z",
+    "is_featured":false
+  },
+  {
+    "id":"f2",
+    "title":"Escândalo abala Hollywood",
+    "summary":"Revelações surpreendentes sobre personalidades famosas causam polêmica e dividem opiniões.",
+    "image_url":"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop",
+    "category":"fofocas",
+    "source":"https://www.purepeople.com.br/",
+    "created_date":"2025-01-18T11:20:00Z",
+    "is_featured":false
+  }
+]

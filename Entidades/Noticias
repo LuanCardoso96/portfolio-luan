@@ -1,0 +1,51 @@
+{
+  "name": "News",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Título da notícia"
+    },
+    "content": {
+      "type": "string",
+      "description": "Conteúdo completo da notícia"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Resumo da notícia"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL da imagem da notícia"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "marvel_dc",
+        "gossip"
+      ],
+      "description": "Categoria da notícia"
+    },
+    "external_url": {
+      "type": "string",
+      "description": "URL externa da fonte original"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se é notícia destaque"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags da notícia"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "category"
+  ]
+}
