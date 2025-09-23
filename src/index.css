@@ -2,4 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-.line-clamp-3{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+html, body, #root {
+  height: 100%;
+}
+
+/* Garantir que as imagens carreguem corretamente */
+img {
+  max-width: 100%;
+  height: auto;
+  loading: eager !important; /* Força carregamento imediato */
+  content-visibility: auto;
+}
+
+/* Fallback para imagens que não carregam */
+img[src=""], img:not([src]) {
+  opacity: 0;
+}
+
+/* Desabilitar lazy loading globalmente */
+img[loading="lazy"] {
+  loading: eager !important;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 70s linear infinite;
+}
+
+.animate-scroll {
+  animation: scroll 35s linear infinite;
+}
+
+.pause-on-hover:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Estilos para placeholders de anúncio */
+.ad-slot {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ad-slot-top {
+  margin: 16px auto;
+  max-width: 728px;
+}
+
+.ad-slot-bottom {
+  margin: 16px auto;
+  max-width: 728px;
+}
+
+/* Responsividade para anúncios */
+@media (max-width: 768px) {
+  .ad-slot {
+    min-height: 50px;
+    font-size: 12px;
+  }
+}

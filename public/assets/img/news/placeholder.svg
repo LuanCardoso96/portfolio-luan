@@ -1,7 +1,0 @@
-<!-- Placeholder SVG para notícias -->
-<svg width="400" height="225" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="225" fill="#fef3c7"/>
-  <text x="200" y="112" text-anchor="middle" font-family="Arial" font-size="18" fill="#92400e">
-    Imagem da Notícia
-  </text>
-</svg>

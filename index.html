@@ -3,15 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111827" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <title>Luan Cardoso — Portfólio</title>
+    <title>Luan Digital</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+    <!-- SEO básico -->
+    <meta name="description" content="Luan Cardoso — Desenvolvedor Web, Mobile e Gestor de Tráfego Pago." />
+    
+    <!-- Evitar lazy loading desnecessário -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="robots" content="noindex, nofollow" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
     <script>
-      if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js')); }
+      // Desabilitar lazy loading globalmente
+      document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+          img.loading = 'eager';
+          img.removeAttribute('loading');
+        });
+      });
     </script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
