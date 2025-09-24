@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -34,8 +34,8 @@ import MinhaConta from './pages/MinhaConta.jsx'
 import Premium from './pages/Premium.jsx'
 
 // Páginas admin
-import AdminNoticias from './pages/admin/Noticias.jsx'
-import AdminVendas from './pages/admin/Vendas.jsx'
+import AdminConteudo from './pages/admin/Conteudo.jsx'
+import AdminProdutos from './pages/admin/Produtos.jsx'
 import AdminPortfolio from './pages/admin/Portfolio.jsx'
 import AdminDownloads from './pages/admin/Downloads.jsx'
 
@@ -50,14 +50,12 @@ import AdminSimples from './components/AdminSimples.jsx'
 import SeedManager from './components/SeedManager.jsx'
 import TesteSeedDireto from './components/TesteSeedDireto.jsx'
 import PopulaFirestore from './components/PopulaFirestore.jsx'
+import ImportNews from './components/ImportNews.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    future: {
-      v7_startTransition: true
-    },
     children: [
       // públicas
       { index: true, element: <Home /> },
@@ -78,6 +76,7 @@ const router = createBrowserRouter([
               { path: 'seed-manager', element: <SeedManager /> },
               { path: 'teste-seed-direto', element: <TesteSeedDireto /> },
               { path: 'popula-firestore', element: <PopulaFirestore /> },
+              { path: 'import-news', element: <ImportNews /> },
               { path: 'teste-home', element: <TesteHome /> },
               { path: 'home-simples', element: <HomeSimplificado /> },
               { path: 'privacidade', element: <Privacidade /> },
@@ -90,11 +89,17 @@ const router = createBrowserRouter([
       { path: 'minha-conta', element: <ProtectedRoute><MinhaConta /></ProtectedRoute> },
 
               // admin (somente o e-mail autorizado)
-              { path: 'admin', element: <AdminRoute><Admin /></AdminRoute> },
-              { path: 'admin/noticias', element: <AdminRoute><AdminNoticias /></AdminRoute> },
-              { path: 'admin/vendas', element: <AdminRoute><AdminVendas /></AdminRoute> },
-              { path: 'admin/portfolio', element: <AdminRoute><AdminPortfolio /></AdminRoute> },
-              { path: 'admin/downloads', element: <AdminRoute><AdminDownloads /></AdminRoute> }
+              { 
+                path: 'admin', 
+                element: <AdminRoute><Admin /></AdminRoute>,
+                children: [
+                  { index: true, element: <Navigate to="conteudo" replace /> },
+                  { path: 'conteudo', element: <AdminConteudo /> },
+                  { path: 'produtos', element: <AdminProdutos /> },
+                  { path: 'portfolio', element: <AdminPortfolio /> },
+                  { path: 'downloads', element: <AdminDownloads /> }
+                ]
+              }
     ]
   }
 ])

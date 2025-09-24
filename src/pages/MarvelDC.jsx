@@ -1,10 +1,91 @@
 import React from 'react'
+import { listPaged } from '../lib/firestoreRepo'
+import PromoRail from '../components/PromoRail'
+
+function NewsCard({ news }) {
+  return (
+    <div className="bg-white rounded-2xl border shadow-sm overflow-hidden hover:shadow-lg transition">
+      {news.imagem && (
+        <img src={news.imagem} alt={news.titulo} className="w-full h-48 object-cover" />
+      )}
+      <div className="p-4">
+        <h3 className="font-bold text-lg mb-2">{news.titulo}</h3>
+        {news.descricao && (
+          <p className="text-gray-600 text-sm mb-3 line-clamp-3">{news.descricao}</p>
+        )}
+        <div className="flex items-center justify-between">
+          <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">
+            {news.categoria}
+          </span>
+          <a 
+            href={news.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:text-indigo-800 text-sm font-semibold"
+          >
+            Ler mais →
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function MarvelDC() {
+  const [news, setNews] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    async function loadMarvelDC() {
+      try {
+        const { items } = await listPaged('noticias', 20, null)
+        // Filtrar apenas notícias Marvel & DC
+        const marvelDC = items.filter(item => item.categoria === 'Marvel & DC')
+        setNews(marvelDC)
+      } catch (error) {
+        console.error('Erro ao carregar notícias Marvel & DC:', error)
+      }
+      setLoading(false)
+    }
+    
+    loadMarvelDC()
+  }, [])
+
   return (
-    <div className="prose">
-      <h1>Marvel & DC</h1>
-      <p>Notícias sobre Marvel, DC Comics e universo cinematográfico.</p>
-    </div>
+    <section className="max-w-6xl mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
+          Marvel & DC Comics
+        </h1>
+        <p className="text-gray-600">
+          As últimas notícias sobre super-heróis, filmes e quadrinhos do universo Marvel e DC.
+        </p>
+      </div>
+      
+      <PromoRail />
+      
+      {loading ? (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="bg-white rounded-2xl border p-4 shadow-sm animate-pulse">
+              <div className="h-48 bg-gray-200 rounded mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      ) : news.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">
+          Nenhuma notícia Marvel & DC cadastrada ainda.
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {news.map(item => (
+            <NewsCard key={item.id} news={item} />
+          ))}
+        </div>
+      )}
+    </section>
   )
 }
